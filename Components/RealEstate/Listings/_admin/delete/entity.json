@@ -1,0 +1,14 @@
+{
+	"page_created": "2025-05-15 05:00:00", 
+	"page_last_modified": "2025-05-15 05:00:00", 
+	"page_title": "Delete Real Estate Listing", 
+	"page_search_description": "Delete a real estate property listing.", 
+	"page_search_description_inherited": "Delete a real estate property listing.", 
+	"page_search_keywords": "real estate, property, listings, delete", 
+	"page_search_keywords_inherited": "real estate, property, listings, delete",
+	"page_security_new": 0,
+	"design_id": "-1", 
+	"page_dependency_new": "1", 
+	"page_dependency_set": "\\Components\\RealEstate\\Listings", 
+	"page_is_beta": 0
+}

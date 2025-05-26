@@ -1,0 +1,132 @@
+<forms:form id="realestate_listings_form" datasource="\Components\RealEstate\Listings::getListingEntity($_GET['listing_id'])" as="listing" leavepagewarning="true" autocomplete="off">
+	<layout:tablist id="listing_tabs">
+		<layout:tablistitem title="Listing Details">
+			<forms:row description="Enter the title of the property listing." label="Listing Title">
+				<ajax:event id="listing_title_ajaxevent" updateregions="listing_content_type_ajaxregion" />
+				<forms:editbox id="listing_title" datacolumn="listing_title" validations="mandatory" onchangeajax="listing_title_ajaxevent" autofocus="!($_GET['listing_id'])" style="min-width: 300px" autocomplete="off" />
+			</forms:row>
+
+			<forms:row description="Select the type of property." label="Property Type">
+				<forms:combobox id="listing_property_type" datacolumn="listing_property_type" validations="mandatory" style="min-width: 300px">
+					<forms:option value="house">House</forms:option>
+					<forms:option value="apartment">Apartment</forms:option>
+					<forms:option value="townhouse">Townhouse</forms:option>
+					<forms:option value="land">Land</forms:option>
+					<forms:option value="commercial">Commercial</forms:option>
+					<forms:option value="rural">Rural</forms:option>
+				</forms:combobox>
+			</forms:row>
+
+			<forms:row description="Select whether the property is for sale, rent, or auction." label="Sale Type">
+				<forms:combobox id="listing_sale_type" datacolumn="listing_sale_type" validations="mandatory" style="min-width: 300px">
+					<forms:option value="sale">For Sale</forms:option>
+					<forms:option value="rent">For Rent</forms:option>
+					<forms:option value="auction">For Auction</forms:option>
+				</forms:combobox>
+			</forms:row>
+
+			<forms:row description="Enter the price of the property." label="Price">
+				<forms:editbox id="listing_price" datacolumn="listing_price" style="min-width: 300px" />
+			</forms:row>
+
+			<forms:row description="Upload a featured image for this property." label="Featured Image">
+				<forms:fileupload extensions="IMAGE" id="listing_featured_image" datacolumn="listing_featured_image"/>
+			</forms:row>
+
+			<synergy8:customfieldsrenderer fields="[? \Components\RealEstate\Listings::fieldsCustomGetAllExt() ?]" />
+
+			<forms:row label="Short Description" type="one_column">
+				<forms:htmleditor id="listing_description_short" datacolumn="listing_description_short" featureset="rich" mode="inline text" height="140" mediadir="[? 'realestate_listings/' + (($_GET['listing_id']) ? (intval($_GET['listing_id'])) : (\Components\RealEstate\Listings::getAutoIncrementId())) + '/' ?]" />
+			</forms:row>
+
+			<ajax:event id="listing_content_type_ajaxevent" updateregions="listing_content_type_ajaxregion,submit_ajaxregion" />
+			<forms:row description="Select the page to view when visitors click a link to view the full property details." label="Full Version / Link To">
+				<forms:combobox id="listing_content_type" datacolumn="listing_content_type" validations="mandatory" onchangeajax="listing_content_type_ajaxevent" style="min-width: 300px">
+					<forms:option value="new">Create a New Page</forms:option>
+					<forms:option value="page">Link to Existing Page</forms:option>
+					<forms:option value="url">Link to External URL</forms:option>
+					<forms:option value="file">Link to File</forms:option>
+					<forms:option value="none">No Link</forms:option>
+				</forms:combobox>
+			</forms:row>
+
+			<ajax:region id="listing_content_type_ajaxregion">
+
+			</ajax:region>
+		</layout:tablistitem>
+
+		<layout:tablistitem title="Property Details">
+			<forms:row description="Enter the street address of the property." label="Address">
+				<forms:editbox id="listing_address" datacolumn="listing_address" style="min-width: 300px" />
+			</forms:row>
+
+			<forms:row description="Enter the suburb of the property." label="Suburb">
+				<forms:editbox id="listing_suburb" datacolumn="listing_suburb" style="min-width: 300px" />
+			</forms:row>
+
+			<forms:row description="Enter the state of the property." label="State">
+				<forms:editbox id="listing_state" datacolumn="listing_state" style="min-width: 300px" />
+			</forms:row>
+
+			<forms:row description="Enter the postcode of the property." label="Postcode">
+				<forms:editbox id="listing_postcode" datacolumn="listing_postcode" style="min-width: 300px" />
+			</forms:row>
+
+			<forms:row description="Enter the number of bedrooms in the property." label="Bedrooms">
+				<forms:editbox id="listing_bedrooms" datacolumn="listing_bedrooms" style="min-width: 300px" />
+			</forms:row>
+
+			<forms:row description="Enter the number of bathrooms in the property." label="Bathrooms">
+				<forms:editbox id="listing_bathrooms" datacolumn="listing_bathrooms" style="min-width: 300px" />
+			</forms:row>
+
+			<forms:row description="Enter the number of garage spaces in the property." label="Garage Spaces">
+				<forms:editbox id="listing_garages" datacolumn="listing_garages" style="min-width: 300px" />
+			</forms:row>
+
+			<forms:row description="Enter the land size of the property (e.g., 450m²)." label="Land Size">
+				<forms:editbox id="listing_land_size" datacolumn="listing_land_size" style="min-width: 300px" />
+			</forms:row>
+
+			<forms:row label="Full Description" type="one_column">
+				<forms:htmleditor id="listing_description" datacolumn="listing_description" featureset="rich" height="300" mediadir="[? 'realestate_listings/' + (($_GET['listing_id']) ? (intval($_GET['listing_id'])) : (\Components\RealEstate\Listings::getAutoIncrementId())) + '/' ?]" />
+			</forms:row>
+		</layout:tablistitem>
+
+		<layout:tablistitem title="Additional Attributes">
+			<forms:row description="Enter a date for when this listing was published." label="Date">
+				<forms:datepicker datacolumn="listing_date" hastime="true" name="listing_date" />
+			</forms:row>
+
+			<forms:row description="Change the status of this listing." label="Status">
+				<forms:checkbox id="listing_is_offline" value="" label="Offline" datacolumn="listing_is_offline" />
+			</forms:row>
+
+			<forms:row description="Mark this listing as featured to highlight it on your website." label="Featured">
+				<forms:checkbox id="listing_is_featured" value="" label="Featured" datacolumn="listing_is_featured" />
+			</forms:row>
+
+			<forms:row description="Select the contact that is responsible for this listing." label="Agent">
+				<forms:searchbox id="contact_searchbox" component="\Components\Customers\Contacts" datacolumn="contact_id" name="contact_id" datavalue="$contact['contact_id']" as="contact" placeholder="Search for a Contact" autofocus="true" value="[? \Components\Customers\Contacts::currentContactId() ?]">
+					[?? \Components\Customers\Contacts::renderAdmin($contact, '_blank') ??]
+					<logic:if test="$contact['contact_email']"><br /><small style="margin-left: 28px">[? $contact['contact_email'] ?]</small></logic:if>
+				</forms:searchbox>
+			</forms:row>
+		</layout:tablistitem>
+	</layout:tablist>
+
+	<forms:row align="center" type="one_column">
+		<ajax:region id="submit_ajaxregion">
+			<logic:if test="$listing_content_type.value == 'page'" evaluateat="render">
+				<forms:submitbutton id="save_close_button" onclickserver="listingsFormOnSave($realestate_listings_form.getValuesForComponent(), 'close')">&lt; Save &amp; Close</forms:submitbutton>
+				<forms:submitbutton id="save_edit_button" onclickserver="listingsFormOnSave($realestate_listings_form.getValuesForComponent(), 'edit')">Save &amp; Edit Linked Page &gt;</forms:submitbutton>
+			</logic:if>
+			<logic:else test="$listing_content_type.value == 'new'">
+				<forms:submitbutton id="save_edit_button" onclickserver="listingsFormOnSave($realestate_listings_form.getValuesForComponent(), 'edit')">Save &amp; Create Linked Page &gt;</forms:submitbutton>
+			</logic:else>
+			<logic:else>
+				<forms:submitbutton id="save_button" onclickserver="listingsFormOnSave($realestate_listings_form.getValuesForComponent(), 'close')">Save Listing</forms:submitbutton>
+			</logic:else>
+		</ajax:region>
+	</forms:row>
+</forms:form>

@@ -1,0 +1,24 @@
+<logic:variable value="\Components\RealEstate\Listings::get($_GET['listing_id'])" as="listing" />
+
+<div class="panel">
+	<h2>Delete Listing</h2>
+	<p>Are you sure you want to delete the listing "<strong>[? $listing['listing_title'] ?]</strong>"?</p>
+	
+	<logic:if test="$listing['listing_content_type'] == 'page' && $listing['listing_created_page']">
+		<p>This listing created a page. Would you like to delete the page as well?</p>
+		<forms:form id="delete_listing_form">
+			<forms:checkbox id="delete_page" value="1" label="Delete the associated page" checked="true" />
+			<br /><br />
+			<forms:submitbutton id="delete_button" onclickserver="deleteListingAndPage($listing['listing_id'], $delete_page.getValue())">Delete</forms:submitbutton>
+			&nbsp;
+			<forms:submitbutton id="cancel_button" onclick="window.parent.closeDialog(); return false;">Cancel</forms:submitbutton>
+		</forms:form>
+	</logic:if>
+	<logic:else>
+		<forms:form id="delete_listing_form">
+			<forms:submitbutton id="delete_button" onclickserver="deleteListing($listing['listing_id'])">Delete</forms:submitbutton>
+			&nbsp;
+			<forms:submitbutton id="cancel_button" onclick="window.parent.closeDialog(); return false;">Cancel</forms:submitbutton>
+		</forms:form>
+	</logic:else>
+</div>

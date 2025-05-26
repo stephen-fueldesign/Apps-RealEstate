@@ -1,0 +1,14 @@
+{
+	"page_created": "2025-05-15 04:58:00", 
+	"page_last_modified": "2025-05-15 04:58:00", 
+	"page_title": "Edit Real Estate Listing", 
+	"page_search_description": "Add or edit a real estate property listing with details like price, location, and features.", 
+	"page_search_description_inherited": "Add or edit a real estate property listing with details like price, location, and features.", 
+	"page_search_keywords": "real estate, property, listings, edit, add", 
+	"page_search_keywords_inherited": "real estate, property, listings, edit, add",
+	"page_security_new": 0,
+	"design_id": "-1", 
+	"page_dependency_new": "1", 
+	"page_dependency_set": "\\Components\\RealEstate\\Listings", 
+	"page_is_beta": 0
+}

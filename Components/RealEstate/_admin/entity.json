@@ -1,0 +1,22 @@
+{
+	"page_created": "2025-05-15 04:57:00",
+	"page_last_modified": "2025-05-15 04:57:00",
+	"page_title": "Real Estate",
+	"page_search_description": "Manage real estate property listings for sale or rent. Add, edit, and delete property listings with details like price, location, and features.",
+	"page_search_description_inherited": "Manage real estate property listings for sale or rent. Add, edit, and delete property listings with details like price, location, and features.",
+	"page_search_keywords": "real estate, property, listings, houses, apartments, land, commercial, rural",
+	"page_search_keywords_inherited": "real estate, property, listings, houses, apartments, land, commercial, rural",
+	"page_security_new": 0,
+	"page_order": "1",
+	"design_id": "-1",
+	"page_header_functions": "<a href=\"\/admin\/realestate\/listings\/edit\/\"><svg><use xlink:href=\"#action-new\"><\/use><\/svg>New Listing<\/a>\r\n<a href=\"\/admin\/settings\/customfields\/?component=\\Components\\RealEstate\\Listings\" class=\"expand\"><svg class=\"iconTile iconGrey\"><use xlink:href=\"#action-configure\"><\/use><\/svg>Custom Fields<\/a>",
+	"page_dependency_new": "1",
+	"page_dependency_set": "\\Components\\RealEstate\\Listings",
+	"page_is_beta": 0,
+	"page_other_fields": null,
+	"page_search_title": null,
+	"page_security_contact_mode": null,
+	"page_security_contact_squeeze_viewlimit": null,
+	"page_security_heading": null,
+	"page_security_description": null
+}

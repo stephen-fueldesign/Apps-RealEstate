@@ -1,0 +1,113 @@
+<logic:if test="\Components\RealEstate\Listings::getCount()">
+	<ajax:event id="property_type_filter_ajaxevent" updateregions="realestate_listings_ajaxregion" />
+	<ajax:event id="sale_type_filter_ajaxevent" updateregions="realestate_listings_ajaxregion" />
+	<ajax:event id="searchbox_ajaxevent" updateregions="realestate_listings_ajaxregion" />
+
+	<p class="hideOnMobile">The following [? formatNumber(\Components\RealEstate\Listings::getCount()) ?] property listings are currently on your website.</p>
+
+	<forms:form onsubmit="return false;">
+		<div class="tableFilters">
+			<forms:combobox id="property_type" value="" savestate="true" onchangeajax="property_type_filter_ajaxevent" class="wideOnMobile">
+				<forms:option value="null">All Property Types</forms:option>
+				<forms:option value="house">Houses</forms:option>
+				<forms:option value="apartment">Apartments</forms:option>
+				<forms:option value="townhouse">Townhouses</forms:option>
+				<forms:option value="land">Land</forms:option>
+				<forms:option value="commercial">Commercial</forms:option>
+				<forms:option value="rural">Rural</forms:option>
+			</forms:combobox>&nbsp;
+			
+			<forms:combobox id="sale_type" value="" savestate="true" onchangeajax="sale_type_filter_ajaxevent" class="wideOnMobile">
+				<forms:option value="null">All Sale Types</forms:option>
+				<forms:option value="sale">For Sale</forms:option>
+				<forms:option value="rent">For Rent</forms:option>
+				<forms:option value="auction">For Auction</forms:option>
+			</forms:combobox>&nbsp;
+
+			<div class="tableFilterSearch"><forms:searchbox id="listing_searchbox" savestate="true" onkeyupajax="searchbox_ajaxevent" width="100%" /></div>
+		</div>
+	</forms:form>
+
+	<ajax:region id="realestate_listings_ajaxregion">
+		<data:table id="realestate_listings_table" datasource="\Components\RealEstate\Listings::getAll()" as="listing" classrow="tableRow" datasearch="[? $listing_searchbox.getValue() ?]" paging="true" emptymessage="No property listings currently exist. &lt;a href=&quot;/admin/realestate/listings/edit/&quot;&gt;Click here to create one&lt;/a&gt;." exportable="true">
+			<data:column heading="Property" ordercolumn="listing_title" class="iconBig" valign="top" nowrap="nowrap">
+				<div style="display: flex; width: 100%; max-width: 50vw">
+					<logic:if test="$listing['listing_featured_image']">
+						<div style="width: 180px; flex-shrink: 0;">
+							<a href="/admin/realestate/listings/edit/?listing_id=[? $listing['listing_id'] ?]"><standard:image alt="[? $listing['listing_title'] ?]" style="border: 1px solid rgb(243, 245, 244);" src="[? $listing['listing_featured_image'] ?]" width="160" onerror="this.style.display = 'none';" lazy="true" /></a>
+						</div>
+					</logic:if>
+
+					<div style="width: 100%">
+						<standard:contextmenu>
+							<logic:if test="$listing['listing_featured_image']">
+								<a href="/admin/realestate/listings/edit/?listing_id=[? $listing['listing_id'] ?]">[? $listing['listing_title'] ?]</a>
+							</logic:if>
+							<logic:else>
+								[?? \Components\RealEstate\Listings::renderAdmin($listing) ??]
+							</logic:else>
+							<standard:contextmenuitem svg="#action-edit" href="[? '/admin/realestate/listings/edit/?listing_id=' + $listing['listing_id'] ?]">Edit</standard:contextmenuitem>
+
+							<logic:if test="$listing['listing_content_type'] == 'page'">
+								<standard:contextmenuitem svg="#action-edit" href="[? '/admin/website/pages/edit/?page_id=' + preg_replace('/^(http)?s?:\/\/?(www\.)?/', '/', $listing['listing_content_url']) ?]">Edit Full Version</standard:contextmenuitem>
+							</logic:if>
+							<logic:if test="$listing['listing_content_url']">
+								<standard:contextmenuitem svg="#action-viewonline" href="[? $listing['listing_content_url'] ?]" target="_blank">View Online</standard:contextmenuitem>
+							</logic:if>
+
+							<standard:contextmenuitem opendialogwith="300" svg="#action-delete" opendialogpage="[? '/admin/realestate/listings/delete/?listing_id=' + $listing['listing_id'] ?]">Delete</standard:contextmenuitem>
+						</standard:contextmenu>
+
+						<div style="clear: both"></div>
+						<small>[? formatDateTime($listing['listing_date']) ?]</small><br />
+						<small>[? ucfirst($listing['listing_property_type']) ?] - [? ucfirst($listing['listing_sale_type']) ?]</small><br />
+						<logic:if test="$listing['listing_price']">
+							<small><strong>[? formatCurrency($listing['listing_price']) ?]</strong></small><br />
+						</logic:if>
+						<logic:if test="$listing['listing_address'] || $listing['listing_suburb']">
+							<small>[? $listing['listing_address'] ?][? ($listing['listing_address'] && $listing['listing_suburb']) ? ', ' : '' ?][? $listing['listing_suburb'] ?][? $listing['listing_state'] ? ', ' . $listing['listing_state'] : '' ?] [? $listing['listing_postcode'] ?]</small>
+						</logic:if>
+					</div>
+				</div>
+			</data:column>
+			<data:column width="35" align="middle" valign="top">
+				<logic:if test="$listing['listing_is_offline']"><span class="tagGrey">OFFLINE</span></logic:if>
+				<logic:if test="$listing['listing_is_featured']"><span class="tagGreen">FEATURED</span></logic:if>
+			</data:column>
+			<data:column heading="Features" valign="top" width="100">
+				<div style="font-size: 8pt;">
+					<logic:if test="$listing['listing_bedrooms']">[? $listing['listing_bedrooms'] ?] Bed</logic:if>
+					<logic:if test="$listing['listing_bedrooms'] && $listing['listing_bathrooms']"> | </logic:if>
+					<logic:if test="$listing['listing_bathrooms']">[? $listing['listing_bathrooms'] ?] Bath</logic:if>
+					<logic:if test="($listing['listing_bedrooms'] || $listing['listing_bathrooms']) && $listing['listing_garages']"> | </logic:if>
+					<logic:if test="$listing['listing_garages']">[? $listing['listing_garages'] ?] Car</logic:if>
+					<logic:if test="$listing['listing_land_size']"><br />[? $listing['listing_land_size'] ?]</logic:if>
+				</div>
+			</data:column>
+			<data:column heading="Description" valign="top">
+				<div style="font-size: 8pt;">[?? $listing['listing_description_short'] ??]</div>
+			</data:column>
+			<data:repeater datasource="\Components\RealEstate\Listings::fieldsCustomGetAllExt(null, true)" as="customfield">
+				<data:column heading="[? $customfield['field_label'] ?]" ordercolumn="[? $customfield['field_id'] ?]">
+					<logic:variable value="[? $listing[$customfield['field_id']] ?]" as="fieldvalue" />
+					<logic:if test="$customfield['field_display']">
+						<small><logic:parse text="[? $customfield['field_display'] ?]" /></small>
+					</logic:if>
+					<logic:else>
+						<small>[? $fieldvalue ?]</small>
+					</logic:else>
+				</data:column>
+			</data:repeater>
+		</data:table>
+	</ajax:region>
+
+</logic:if>
+<logic:else>
+	<div class="gettingStarted">
+		<p><big><strong>Real Estate Listings help you showcase properties for sale or rent.</strong></big></p>
+		<p><big>Use them to publish property details, images, and features to attract potential buyers or tenants.</big></p>
+		<br />
+	</div>
+
+	<standard:tooltip showonload="true" hideon="false" tooltipclass="setup" animation="bounce" arrowposition="top" position="bottom" content="Create Your First Property Listing" target="#designContentHeaderPageFunctions a[href='/admin/realestate/listings/edit/']" />
+</logic:else>

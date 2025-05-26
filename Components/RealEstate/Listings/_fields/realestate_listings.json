@@ -1,0 +1,306 @@
+{
+	"table_id": "realestate_listings", 
+	"table_fields": 
+	[
+		{
+			"field_id": "listing_id", 
+			"field_type": "int", 
+			"field_length": "11", 
+			"field_is_null": false, 
+			"field_default_value": null, 
+			"field_extra": "auto_increment", 
+			"field_collation": null, 
+			"field_comment": ""
+		}, 
+		{
+			"field_id": "listing_title", 
+			"field_type": "varchar", 
+			"field_length": "128", 
+			"field_is_null": false, 
+			"field_default_value": null, 
+			"field_extra": "", 
+			"field_collation": "utf8mb4_general_ci",
+			"field_comment": ""
+		}, 
+		{
+			"field_id": "listing_description_short", 
+			"field_type": "text", 
+			"field_length": null, 
+			"field_is_null": true, 
+			"field_default_value": null, 
+			"field_extra": "", 
+			"field_collation": "utf8mb4_general_ci",
+			"field_comment": ""
+		}, 
+		{
+			"field_id": "listing_description", 
+			"field_type": "text", 
+			"field_length": null, 
+			"field_is_null": true, 
+			"field_default_value": null, 
+			"field_extra": "", 
+			"field_collation": "utf8mb4_general_ci",
+			"field_comment": ""
+		},
+		{
+			"field_id": "listing_featured_image", 
+			"field_type": "varchar", 
+			"field_length": "255",
+			"field_is_null": true, 
+			"field_default_value": null, 
+			"field_extra": "", 
+			"field_collation": "utf8mb4_general_ci",
+			"field_comment": ""
+		},
+		{
+			"field_id": "listing_price", 
+			"field_type": "decimal", 
+			"field_length": "12,2",
+			"field_is_null": true, 
+			"field_default_value": null, 
+			"field_extra": "", 
+			"field_collation": null,
+			"field_comment": ""
+		},
+		{
+			"field_id": "listing_address", 
+			"field_type": "varchar", 
+			"field_length": "255",
+			"field_is_null": true, 
+			"field_default_value": null, 
+			"field_extra": "", 
+			"field_collation": "utf8mb4_general_ci",
+			"field_comment": ""
+		},
+		{
+			"field_id": "listing_suburb", 
+			"field_type": "varchar", 
+			"field_length": "100",
+			"field_is_null": true, 
+			"field_default_value": null, 
+			"field_extra": "", 
+			"field_collation": "utf8mb4_general_ci",
+			"field_comment": ""
+		},
+		{
+			"field_id": "listing_state", 
+			"field_type": "varchar", 
+			"field_length": "50",
+			"field_is_null": true, 
+			"field_default_value": null, 
+			"field_extra": "", 
+			"field_collation": "utf8mb4_general_ci",
+			"field_comment": ""
+		},
+		{
+			"field_id": "listing_postcode", 
+			"field_type": "varchar", 
+			"field_length": "10",
+			"field_is_null": true, 
+			"field_default_value": null, 
+			"field_extra": "", 
+			"field_collation": "utf8mb4_general_ci",
+			"field_comment": ""
+		},
+		{
+			"field_id": "listing_bedrooms", 
+			"field_type": "int", 
+			"field_length": "3",
+			"field_is_null": true, 
+			"field_default_value": null, 
+			"field_extra": "", 
+			"field_collation": null,
+			"field_comment": ""
+		},
+		{
+			"field_id": "listing_bathrooms", 
+			"field_type": "int", 
+			"field_length": "3",
+			"field_is_null": true, 
+			"field_default_value": null, 
+			"field_extra": "", 
+			"field_collation": null,
+			"field_comment": ""
+		},
+		{
+			"field_id": "listing_garages", 
+			"field_type": "int", 
+			"field_length": "3",
+			"field_is_null": true, 
+			"field_default_value": null, 
+			"field_extra": "", 
+			"field_collation": null,
+			"field_comment": ""
+		},
+		{
+			"field_id": "listing_land_size", 
+			"field_type": "varchar", 
+			"field_length": "50",
+			"field_is_null": true, 
+			"field_default_value": null, 
+			"field_extra": "", 
+			"field_collation": "utf8mb4_general_ci",
+			"field_comment": ""
+		},
+		{
+			"field_id": "listing_property_type", 
+			"field_type": "enum", 
+			"field_length": "'house','apartment','townhouse','land','commercial','rural'",
+			"field_is_null": false, 
+			"field_default_value": "house", 
+			"field_extra": "", 
+			"field_collation": "utf8mb4_general_ci",
+			"field_comment": ""
+		},
+		{
+			"field_id": "listing_sale_type", 
+			"field_type": "enum", 
+			"field_length": "'sale','rent','auction'",
+			"field_is_null": false, 
+			"field_default_value": "sale", 
+			"field_extra": "", 
+			"field_collation": "utf8mb4_general_ci",
+			"field_comment": ""
+		},
+		{
+			"field_id": "listing_content_type", 
+			"field_type": "enum", 
+			"field_length": "'none','page','url','file'",
+			"field_is_null": false, 
+			"field_default_value": "none", 
+			"field_extra": "", 
+			"field_collation": "utf8mb4_general_ci",
+			"field_comment": ""
+		}, 
+		{
+			"field_id": "listing_content_url", 
+			"field_type": "varchar", 
+			"field_length": "255", 
+			"field_is_null": true, 
+			"field_default_value": null, 
+			"field_extra": "", 
+			"field_collation": "utf8mb4_general_ci",
+			"field_comment": ""
+		}, 
+		{
+			"field_id": "listing_created_page", 
+			"field_type": "tinyint unsigned", 
+			"field_length": "1", 
+			"field_is_null": false, 
+			"field_default_value": "0", 
+			"field_extra": "", 
+			"field_collation": null, 
+			"field_comment": ""
+		}, 
+		{
+			"field_id": "listing_date", 
+			"field_type": "datetime", 
+			"field_length": null, 
+			"field_is_null": false, 
+			"field_default_value": "current_timestamp()",
+			"field_extra": "", 
+			"field_collation": null, 
+			"field_comment": ""
+		}, 
+		{
+			"field_id": "listing_is_offline", 
+			"field_type": "tinyint unsigned", 
+			"field_length": "1", 
+			"field_is_null": false, 
+			"field_default_value": "0", 
+			"field_extra": "", 
+			"field_collation": null, 
+			"field_comment": ""
+		}, 
+		{
+			"field_id": "listing_is_featured", 
+			"field_type": "tinyint unsigned", 
+			"field_length": "1", 
+			"field_is_null": false, 
+			"field_default_value": "0", 
+			"field_extra": "", 
+			"field_collation": null, 
+			"field_comment": ""
+		},
+		{
+			"field_id": "contact_id", 
+			"field_type": "varchar", 
+			"field_length": "16", 
+			"field_is_null": false, 
+			"field_default_value": null, 
+			"field_extra": "", 
+			"field_collation": "utf8mb4_general_ci",
+			"field_comment": ""
+		}
+	], 
+	"table_indexes": 
+	[
+		{
+			"index_id": "PRIMARY", 
+			"index_type": "primary", 
+			"index_fields": 
+			[
+				"listing_id"
+			]
+		}, 
+		{
+			"index_id": "listing_date", 
+			"index_type": "index", 
+			"index_fields": 
+			[
+				"listing_date"
+			], 
+			"index_structure": "BTREE"
+		}, 
+		{
+			"index_id": "listing_property_type", 
+			"index_type": "index", 
+			"index_fields": 
+			[
+				"listing_property_type"
+			], 
+			"index_structure": "BTREE"
+		}, 
+		{
+			"index_id": "listing_sale_type", 
+			"index_type": "index", 
+			"index_fields": 
+			[
+				"listing_sale_type"
+			], 
+			"index_structure": "BTREE"
+		},
+		{
+			"index_id": "listing_is_offline", 
+			"index_type": "index", 
+			"index_fields": 
+			[
+				"listing_is_offline"
+			], 
+			"index_structure": "BTREE"
+		},
+		{
+			"index_id": "listing_is_featured", 
+			"index_type": "index", 
+			"index_fields": 
+			[
+				"listing_is_featured"
+			], 
+			"index_structure": "BTREE"
+		},
+		{
+			"index_id": "listing_title", 
+			"index_type": "fulltext", 
+			"index_fields": 
+			[
+				"listing_title", 
+				"listing_description_short", 
+				"listing_address",
+				"listing_suburb"
+			]
+		}
+	], 
+	"table_engine": "InnoDB",
+	"table_collation": "utf8mb4_general_ci",
+	"table_comment": ""
+}
