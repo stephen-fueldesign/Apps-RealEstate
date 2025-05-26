@@ -112,17 +112,6 @@
 	</layout:tablist>
 
 	<forms:row align="center" type="one_column">
-		<ajax:region id="submit_ajaxregion">
-			<logic:if test="$listing_content_type.value == 'page'" evaluateat="render">
-				<forms:submitbutton id="save_close_button" onclickserver="listingsFormOnSave($realestate_listings_form.getValuesForComponent(), 'close')">&lt; Save &amp; Close</forms:submitbutton>
-				<forms:submitbutton id="save_edit_button" onclickserver="listingsFormOnSave($realestate_listings_form.getValuesForComponent(), 'edit')">Save &amp; Edit Linked Page &gt;</forms:submitbutton>
-			</logic:if>
-			<logic:else test="$listing_content_type.value == 'new'">
-				<forms:submitbutton id="save_edit_button" onclickserver="listingsFormOnSave($realestate_listings_form.getValuesForComponent(), 'edit')">Save &amp; Create Linked Page &gt;</forms:submitbutton>
-			</logic:else>
-			<logic:else>
-				<forms:submitbutton id="save_button" onclickserver="listingsFormOnSave($realestate_listings_form.getValuesForComponent(), 'close')">Save Listing</forms:submitbutton>
-			</logic:else>
-		</ajax:region>
+		<forms:submitbutton>Save Listing</forms:submitbutton>
 	</forms:row>
 </forms:form>
