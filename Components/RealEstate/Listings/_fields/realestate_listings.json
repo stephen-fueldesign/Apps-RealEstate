@@ -31,16 +31,6 @@
 			"field_extra": "", 
 			"field_collation": "utf8mb4_general_ci",
 			"field_comment": ""
-		}, 
-		{
-			"field_id": "listing_description", 
-			"field_type": "text", 
-			"field_length": null, 
-			"field_is_null": true, 
-			"field_default_value": null, 
-			"field_extra": "", 
-			"field_collation": "utf8mb4_general_ci",
-			"field_comment": ""
 		},
 		{
 			"field_id": "listing_featured_image", 

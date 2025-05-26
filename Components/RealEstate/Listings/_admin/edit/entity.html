@@ -87,10 +87,6 @@
 			<forms:row description="Enter the land size of the property (e.g., 450m²)." label="Land Size">
 				<forms:editbox id="listing_land_size" datacolumn="listing_land_size" style="min-width: 300px" />
 			</forms:row>
-
-			<forms:row label="Full Description" type="one_column">
-				<forms:htmleditor id="listing_description" datacolumn="listing_description" featureset="rich" height="300" mediadir="[? 'realestate_listings/' + (($_GET['listing_id']) ? (intval($_GET['listing_id'])) : (\Components\RealEstate\Listings::getAutoIncrementId())) + '/' ?]" />
-			</forms:row>
 		</layout:tablistitem>
 
 		<layout:tablistitem title="Additional Attributes">

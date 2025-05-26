@@ -1,7 +1,10 @@
 <?php
 
 /**
- * Copyright(c) Oncord Pty Ltd (ACN 116 347 909), All rights reserved.
+ * Apache License
+ *
+ * Version 2.0, January 2004
+ * http://www.apache.org/licenses/
  */
 namespace Components\RealEstate;
 
@@ -154,21 +157,6 @@ class Listings extends \Framework\Components\DataABC
 				$arrEntity['listing_content_url'] = null;
 		}
 
-		// The short version should have its <p> removed if it is only one line
-		if (isset($arrEntity['listing_description_short']))
-		{
-			$str = &$arrEntity['listing_description_short'];
-			$str = preg_replace('/<br \/>\s*<\/p>/i', '</p>', $str);
-			$str = preg_replace('/<p[^>]*?>([\s\S]*?)<\/p>/i', '<br /><br />$1', $str);
-			$str = preg_replace('/\A(?:\s*<br \/>\s*)+?/i', '', $str);
-			$str = preg_replace('/\A(?:\s*<br \/>\s*)+?/i', '', $str);
-			$str = preg_replace('/<p[^>]*?>&nbsp;<\/p>/i', '', $str);
-			$str = preg_replace('/<p[^>]*?>&#8203;<\/p>/i', '', $str);
-
-			if ($str == '&#8203;')
-				$str = '';
-		}
-
 		// Save the listing
 		$bResult = parent::_save($arrEntity, $strReason);
 
@@ -228,7 +216,6 @@ class Listings extends \Framework\Components\DataABC
 	 *
 	 * @param string $sOldPageId
 	 * @param string $sNewPageId
-	 * @return void
 	 */
 	public static function moveFullVersionPageIds($sOldPageId, $sNewPageId)
 	{
@@ -248,26 +235,11 @@ class Listings extends \Framework\Components\DataABC
 	 */
 	public static function renderAdmin($arrListing)
 	{
-		$sOutput = '<a href="/admin/realestate/listings/edit/?listing_id=' . $arrListing['listing_id'] . '">' . $arrListing['listing_title'] . '</a>';
-		return $sOutput;
+		return '<a href="/admin/realestate/listings/edit/?listing_id=' . $arrListing['listing_id'] . '">' . $arrListing['listing_title'] . '</a>';
 	}
 
-	/**
-	 * Get a listing entity for the form
-	 *
-	 * @param int $iListingId
-	 * @return array
-	 */
-	public static function getListingEntity($iListingId)
+	public function install()
 	{
-		if (!$iListingId)
-			return [];
-
-		$arrListing = static::get($iListingId);
-
-		if (!$arrListing)
-			return [];
-
-		return $arrListing;
+		parent::install();
 	}
 }
