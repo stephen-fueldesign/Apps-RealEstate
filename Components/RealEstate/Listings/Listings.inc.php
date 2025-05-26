@@ -238,7 +238,7 @@ class Listings extends \Framework\Components\DataABC
 		return '<a href="/admin/realestate/listings/edit/?listing_id=' . $arrListing['listing_id'] . '">' . $arrListing['listing_title'] . '</a>';
 	}
 
-	public function install()
+	public static function install()
 	{
 		parent::install();
 	}
