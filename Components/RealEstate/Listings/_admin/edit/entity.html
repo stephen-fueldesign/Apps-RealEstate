@@ -1,4 +1,4 @@
-<forms:form id="realestate_listings_form" component="\Components\RealEstate\Listings" componentkey="[? $_GET['listing_id'] ?]" as="listing" leavepagewarning="true" autocomplete="off">
+<forms:form id="realestate_listings_form" component="\Components\RealEstate\Listings" componentkey="[? $_GET['listing_id'] ?]" as="listing" leavepagewarning="true" autocomplete="off" onsubmitredirect="/admin/realestate/listings/" onsuccesstoastmessage="Listing Saved">
 	<layout:tablist id="listing_tabs">
 		<layout:tablistitem title="Listing Details">
 			<forms:row description="Enter the title of the property listing." label="Listing Title">

@@ -62,7 +62,7 @@
 						<small>[? formatDateTime($listing['listing_date']) ?]</small><br />
 						<small>[? ucfirst($listing['listing_property_type']) ?] - [? ucfirst($listing['listing_sale_type']) ?]</small><br />
 						<logic:if test="$listing['listing_price']">
-							<small><strong>[? formatCurrency($listing['listing_price']) ?]</strong></small><br />
+							<small><strong>[?? formatCurrency($listing['listing_price']) ??]</strong></small><br />
 						</logic:if>
 						<logic:if test="$listing['listing_address'] || $listing['listing_suburb']">
 							<small>[? $listing['listing_address'] ?][? ($listing['listing_address'] && $listing['listing_suburb']) ? ', ' : '' ?][? $listing['listing_suburb'] ?][? $listing['listing_state'] ? ', ' . $listing['listing_state'] : '' ?] [? $listing['listing_postcode'] ?]</small>
