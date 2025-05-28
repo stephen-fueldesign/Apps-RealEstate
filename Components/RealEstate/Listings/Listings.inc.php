@@ -235,7 +235,7 @@ class Listings extends \Framework\Components\DataABC
 	 */
 	public static function renderAdmin($arrListing)
 	{
-		return '<a href="/admin/realestate/listings/edit/?listing_id=' . $arrListing['listing_id'] . '">' . $arrListing['listing_title'] . '</a>';
+		return '<a href="/admin/realestate/listings/edit/?listing_id=' . $arrListing['listing_id'] . '">🏠 ' . htmlspecialchars($arrListing['listing_title']) . '</a>';
 	}
 
 	public static function install()
