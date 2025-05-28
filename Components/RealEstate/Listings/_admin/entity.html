@@ -1,35 +1,31 @@
 <logic:if test="\Components\RealEstate\Listings::getCount()">
-	<ajax:event id="property_type_filter_ajaxevent" updateregions="realestate_listings_ajaxregion" />
-	<ajax:event id="sale_type_filter_ajaxevent" updateregions="realestate_listings_ajaxregion" />
-	<ajax:event id="searchbox_ajaxevent" updateregions="realestate_listings_ajaxregion" />
+	<ajax:event id="realestate_listings_table_redraw_ajaxevent" updateregions="realestate_listings_ajaxregion" />
 
 	<p class="hideOnMobile">The following [? formatNumber(\Components\RealEstate\Listings::getCount()) ?] property listings are currently on your website.</p>
 
-	<forms:form onsubmit="return false;">
-		<div class="tableFilters">
-			<forms:combobox id="property_type" value="" savestate="true" onchangeajax="property_type_filter_ajaxevent" class="wideOnMobile">
-				<forms:option value="null">All Property Types</forms:option>
-				<forms:option value="house">Houses</forms:option>
-				<forms:option value="apartment">Apartments</forms:option>
-				<forms:option value="townhouse">Townhouses</forms:option>
-				<forms:option value="land">Land</forms:option>
-				<forms:option value="commercial">Commercial</forms:option>
-				<forms:option value="rural">Rural</forms:option>
-			</forms:combobox>&nbsp;
-			
-			<forms:combobox id="sale_type" value="" savestate="true" onchangeajax="sale_type_filter_ajaxevent" class="wideOnMobile">
-				<forms:option value="null">All Sale Types</forms:option>
-				<forms:option value="sale">For Sale</forms:option>
-				<forms:option value="rent">For Rent</forms:option>
-				<forms:option value="auction">For Auction</forms:option>
-			</forms:combobox>&nbsp;
-
-			<div class="tableFilterSearch"><forms:searchbox id="listing_searchbox" savestate="true" onkeyupajax="searchbox_ajaxevent" width="100%" /></div>
-		</div>
-	</forms:form>
 
 	<ajax:region id="realestate_listings_ajaxregion">
-		<data:table id="realestate_listings_table" datasource="\Components\RealEstate\Listings::getAll()" as="listing" classrow="tableRow" datasearch="[? $listing_searchbox.getValue() ?]" paging="true" emptymessage="No property listings currently exist. &lt;a href=&quot;/admin/realestate/listings/edit/&quot;&gt;Click here to create one&lt;/a&gt;." exportable="true">
+		<data:table id="realestate_listings_table" datasource="\Components\RealEstate\Listings::getAll()" as="listing" classrow="tableRow" paging="true" emptymessage="No property listings currently exist. &lt;a href=&quot;/admin/realestate/listings/edit/&quot;&gt;Click here to create one&lt;/a&gt;." exportable="true">
+			<data:tablefilters updateregionevent="realestate_listings_table_redraw_ajaxevent" tabs="[? [] ?]" hassearch="true" hasall="false" filteras="filter">
+				<forms:form onsubmit="return false;">
+					<forms:combobox id="property_type" value="" savestate="true" onchangeajax="realestate_listings_table_redraw_ajaxevent" class="wideOnMobile">
+						<forms:option value="null">All Property Types</forms:option>
+						<forms:option value="house">Houses</forms:option>
+						<forms:option value="apartment">Apartments</forms:option>
+						<forms:option value="townhouse">Townhouses</forms:option>
+						<forms:option value="land">Land</forms:option>
+						<forms:option value="commercial">Commercial</forms:option>
+						<forms:option value="rural">Rural</forms:option>
+					</forms:combobox>&nbsp;
+
+					<forms:combobox id="sale_type" value="" savestate="true" onchangeajax="sale_type_filter_ajaxevent" class="wideOnMobile">
+						<forms:option value="null">All Sale Types</forms:option>
+						<forms:option value="sale">For Sale</forms:option>
+						<forms:option value="rent">For Rent</forms:option>
+						<forms:option value="auction">For Auction</forms:option>
+					</forms:combobox>&nbsp;
+				</forms:form>
+			</data:tablefilters>
 			<data:column heading="Property" ordercolumn="listing_title" class="iconBig" valign="top" nowrap="nowrap">
 				<div style="display: flex; width: 100%; max-width: 50vw">
 					<logic:if test="$listing['listing_featured_image']">

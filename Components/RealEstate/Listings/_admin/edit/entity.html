@@ -2,7 +2,6 @@
 	<layout:tablist id="listing_tabs">
 		<layout:tablistitem title="Listing Details">
 			<forms:row description="Enter the title of the property listing." label="Listing Title">
-				<ajax:event id="listing_title_ajaxevent" updateregions="listing_content_type_ajaxregion" />
 				<forms:editbox id="listing_title" datacolumn="listing_title" validations="mandatory" onchangeajax="listing_title_ajaxevent" autofocus="!($_GET['listing_id'])" style="min-width: 300px" autocomplete="off" />
 			</forms:row>
 
@@ -39,7 +38,7 @@
 				<forms:htmleditor id="listing_description_short" datacolumn="listing_description_short" featureset="rich" mode="inline text" height="140" mediadir="[? 'realestate_listings/' + (($_GET['listing_id']) ? (intval($_GET['listing_id'])) : (\Components\RealEstate\Listings::getAutoIncrementId())) + '/' ?]" />
 			</forms:row>
 
-			<ajax:event id="listing_content_type_ajaxevent" updateregions="listing_content_type_ajaxregion,submit_ajaxregion" />
+			<ajax:event id="listing_content_type_ajaxevent" updateregions=",submit_ajaxregion" />
 			<forms:row description="Select the page to view when visitors click a link to view the full property details." label="Full Version / Link To">
 				<forms:combobox id="listing_content_type" datacolumn="listing_content_type" validations="mandatory" onchangeajax="listing_content_type_ajaxevent" style="min-width: 300px">
 					<forms:option value="new">Create a New Page</forms:option>
@@ -49,10 +48,6 @@
 					<forms:option value="none">No Link</forms:option>
 				</forms:combobox>
 			</forms:row>
-
-			<ajax:region id="listing_content_type_ajaxregion">
-
-			</ajax:region>
 		</layout:tablistitem>
 
 		<layout:tablistitem title="Property Details">
