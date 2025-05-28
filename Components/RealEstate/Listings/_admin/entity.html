@@ -6,7 +6,7 @@
 
 	<ajax:region id="realestate_listings_ajaxregion">
 		<data:table id="realestate_listings_table" datasource="\Components\RealEstate\Listings::getAll()" as="listing" classrow="tableRow" paging="true" emptymessage="No property listings currently exist. &lt;a href=&quot;/admin/realestate/listings/edit/&quot;&gt;Click here to create one&lt;/a&gt;." exportable="true">
-			<data:tablefilters updateregionevent="realestate_listings_table_redraw_ajaxevent" tabs="[? [] ?]" hassearch="true" hasall="false" filteras="filter">
+			<data:tablefilters updateregionevent="realestate_listings_table_redraw_ajaxevent" tabs="[? getTabs() ?]" hassearch="true" hasall="false" filteras="filter">
 				<forms:form onsubmit="return false;">
 					<forms:combobox id="property_type" value="" savestate="true" onchangeajax="realestate_listings_table_redraw_ajaxevent" class="wideOnMobile">
 						<forms:option value="null">All Property Types</forms:option>
