@@ -40,12 +40,7 @@
 
 					<div style="width: 100%">
 						<standard:contextmenu>
-							<logic:if test="$listing['listing_featured_image']">
-								<a href="/admin/realestate/listings/edit/?listing_id=[? $listing['listing_id'] ?]">[? $listing['listing_title'] ?]</a>
-							</logic:if>
-							<logic:else>
-								[?? \Components\RealEstate\Listings::renderAdmin($listing) ??]
-							</logic:else>
+							[?? \Components\RealEstate\Listings::renderAdmin($listing) ??]
 							<standard:contextmenuitem svg="#action-edit" href="[? '/admin/realestate/listings/edit/?listing_id=' + $listing['listing_id'] ?]">Edit</standard:contextmenuitem>
 
 							<logic:if test="$listing['listing_content_type'] == 'page'">
