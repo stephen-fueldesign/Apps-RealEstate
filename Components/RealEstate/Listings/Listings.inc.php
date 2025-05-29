@@ -227,6 +227,7 @@ class Listings extends \Framework\Components\DataABC
 		}
 	}
 
+
 	/**
 	 * Render a listing in the admin interface
 	 *
